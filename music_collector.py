@@ -19,7 +19,7 @@ def main():
         find_albums_by_artist(artist, music)
     elif choosen_action == "3":
         year = input("\nSearched year: ")
-        while not match("^[1-2][8-9][0-9]{2}$", year):
+        while not match("^[1-2][0-9]{3}$", year):
             print("\nWrong input.")
             year = input("\nSearched year: ")
         year = int(year)
@@ -93,11 +93,11 @@ def choosing_action():
 # Takes input about new album. Validates input where needed.
 # Writes given data to csv file.
 def add_new_album():
-    print("\nADDING NEW ALBUM\n")
+    print("\nADDING NEW ALBUM")
     artist_name = input("\nArtist name: ")
     album_name = input("\nAlbum name: ")
     year_of_release = input("\nYear of release: ")
-    while not match("^[1-2][8-9][0-9]{2}$", year_of_release):
+    while not match("^[1-2][0-9]{3}$", year_of_release):
         print("\nWrong input.")
         year_of_release = input("\nYear of release: ")
     year_of_release = int(year_of_release)
