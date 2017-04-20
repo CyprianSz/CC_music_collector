@@ -10,6 +10,7 @@ import csv
 # when last action was adding new album.
 def main():
     music = create_music_list()
+    print(music)
     info()
     choosen_action = choosing_action()
     if choosen_action == "1":
@@ -55,12 +56,12 @@ def main():
 # Creates list in specified format.
 def create_music_list():
     music = open("music_collector.csv", "r")
-    music_reader = csv.reader(music)
+    music_reader = csv.reader(music, delimiter="|")
     music_data = list(music_reader)
     music_list = []
     for data in music_data:
-        name_tupple = (data[0], data[1])
-        info_tupple = (int(data[2]), data[3], data[4])
+        name_tupple = (data[0][0:-1], data[1][1:-1])
+        info_tupple = (int(data[2]), data[3][1:-1], data[4][1:])
         music_list.append((name_tupple, info_tupple))
     music.close()
     return music_list
@@ -100,15 +101,15 @@ def add_new_album():
     while not match("^[1-2][0-9]{3}$", year_of_release):
         print("\nWrong input.")
         year_of_release = input("\nYear of release: ")
-    year_of_release = int(year_of_release)
     genre = input("\nGenre: ")
     length = input("\nLength: ")
     while not match("^[0-9]{2,3}:[0-5][0-9]$", length):
         print("\nWrong input. Proper format is: \"mm:ss\"")
         length = input("\nLengh: ")
     music = open("music_collector.csv", "a")
-    music_writer = csv.writer(music)
-    music_writer.writerow([artist_name, album_name, year_of_release, genre, length])
+    music_writer = csv.writer(music, delimiter="|")
+    music_writer.writerow([artist_name + " ", " " + album_name + " ",
+                          " " + year_of_release + " ", " " + genre + " ", " " + length])
     music.close()
     print("\n\n{} {} added.\n".format(artist_name, album_name))
 
