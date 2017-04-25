@@ -211,4 +211,5 @@ def continue_or_exit():
     return answer
 
 
-main()
+if __name__ == '__main__':
+    main()
