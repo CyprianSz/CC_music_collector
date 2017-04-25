@@ -10,7 +10,6 @@ import csv
 # when last action was adding new album.
 def main():
     music = create_music_list()
-    print(music)
     info()
     choosen_action = choosing_action()
     if choosen_action == "1":
@@ -108,8 +107,11 @@ def add_new_album():
         length = input("\nLengh: ")
     music = open("music_collector.csv", "a")
     music_writer = csv.writer(music, delimiter="|")
-    music_writer.writerow([artist_name + " ", " " + album_name + " ",
-                          " " + year_of_release + " ", " " + genre + " ", " " + length])
+    music_writer.writerow([artist_name + " ",
+                           " " + album_name + " ",
+                           " " + year_of_release + " ",
+                           " " + genre + " ",
+                           " " + length])
     music.close()
     print("\n\n{} {} added.\n".format(artist_name, album_name))
 
@@ -198,7 +200,7 @@ def the_longest_album(music):
         if lenght > maximum:
             maximum = lenght
             data = album
-    print("\nThe longest album is: {}, it's {} minutes long.".format(data[0], data[1][2]))
+    print("\nThe longest album is: {}, it's {} m".format(data[0], data[1][2]))
 
 
 # Validation for exiting or continue working.
