@@ -5,10 +5,10 @@ from random import choice
 import csv
 
 
-# main function creates list 'music' at the begginign each time,
-# what allows to have updated list for working actions in case,
-# when last action was adding new album.
 def main():
+    """creates list 'music' at the begginign each time,
+    what allows to have updated list for working actions in case,
+    when last action was adding new album."""
     music = create_music_list()
     info()
     choosen_action = choosing_action()
@@ -52,8 +52,8 @@ def main():
         exit()
 
 
-# Creates list in specified format.
 def create_music_list():
+    """Creates list in specified format"""
     music = open("music_collector.csv", "r")
     music_reader = csv.reader(music, delimiter="|")
     music_data = list(music_reader)
@@ -81,8 +81,8 @@ def info():
          0) Exit\n""")
 
 
-# Validation for choosen action.
 def choosing_action():
+    """Validates choosen action"""
     choosen_action = input("\nChoose action number: ")
     while not match("^[0-9]$|^10$|^exit$", choosen_action):
         print("\nWrong input. Choose number between 0 and 10")
@@ -90,9 +90,9 @@ def choosing_action():
     return choosen_action
 
 
-# Takes input about new album. Validates input where needed.
-# Writes given data to csv file.
 def add_new_album():
+    """Takes input about new album. Validates input where needed.
+    Writes given data to csv file."""
     print("\nADDING NEW ALBUM")
     artist_name = input("\nArtist name: ")
     album_name = input("\nAlbum name: ")
@@ -203,8 +203,8 @@ def the_longest_album(music):
     print("\nThe longest album is: {}, it's {} m".format(data[0], data[1][2]))
 
 
-# Validation for exiting or continue working.
 def continue_or_exit():
+    """Validation for exiting or continue working"""
     answer = input("\nAnother operation ?\nType \"yes\" or \"no\": ").lower()
     while not match("^yes$|^no$", answer):
         answer = input("\nWrong input. \nType \"yes\" or \"no\": ").lower()
